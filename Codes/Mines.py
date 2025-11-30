@@ -23,15 +23,18 @@ class mines:
 
         self.l = [["💎"] * self.n  for i in range(self.n)]
 
-        temp =[]
-        while(len(temp)!=self.bomb):
+        temp =""
+        bomb1 = 0
+        while(bomb1!=self.bomb):
             x = randint(0,self.n-1)
             y = randint(0,self.n-1)
+            a = "."+str(x)+"+"+str(y)+"."
 
-            if((str(x)+str(y)) in temp):
+            if(a in temp):
                 continue
             else:
-                temp.append(str(x)+str(y))
+                temp+=a
+                bomb1+=1
                 self.l[x][y]="💣"
         
         self.tiles=[]
@@ -50,17 +53,17 @@ class mines:
         elif(z.upper()=="CASH"):
             print(f"You Cashout {self.current_cash}/-")
             return 0  
-        elif(int(z)>self.n*self.n):
+        elif(int(z)>self.n*self.n or int(z)==0):
             raise Exception("Invalid Input")     
 
         z=int(z)
         z-=1
         x= z//self.n
         y= z%self.n
-        a = str(x)+"+"+str(y)
+        a = "."+str(x)+"+"+str(y)+"."
         if(a in self.selected):
             raise Exception("Mine Already Selected")
-        self.selected+=("."+a+".")
+        self.selected+=(a)
 
         if(self.l[x][y]=="💣"):
             self.tiles[x][y]=self.l[x][y]
