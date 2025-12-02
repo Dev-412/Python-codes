@@ -1,0 +1,1 @@
+This Is A Basic Python Repo Consisting Different Python Logics And Concepts Which Can Be Used To Learn Python And Certain Logical Codes Developed By Me Which Can Be Directly Used In Big Python Projects.
