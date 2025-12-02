@@ -15,7 +15,8 @@ class snake_game:
     def create(self):
 
         self.grid = [["." for i in range(self.n)] for i in range(self.n)]
-        self.snake = [(5,5),(5,4),(5,3)]
+        mid = self.n // 2
+        self.snake = [(mid, mid), (mid, mid-1), (mid, mid-2)]
         self.head = self.snake[0]
         for i in self.snake:
             x = i[0]
@@ -26,7 +27,7 @@ class snake_game:
                 self.grid[x][y]="O"
         food = self.Spawn_food()
         self.grid[food[0]][food[1]]="F"
-        self.Print()
+        print("\033[?25l", end="")
 
     def movement(self,z):
         # valid input check 
@@ -73,7 +74,8 @@ class snake_game:
         if(food1==None):
             food1 = self.Spawn_food()
         self.grid[food1[0]][food1[1]]="F"
-        self.clear_screen()
+        print("\033[H", end="")
+        # self.clear_screen()
         self.Print()
 
     def Spawn_food(self):
@@ -105,8 +107,8 @@ class snake_game:
                 print(j,end=" ")
             print()
     
-    def clear_screen(self):
-        os.system("cls")
+    # def clear_screen(self):
+    #     os.system("cls")
 
 
 direction = "right"
@@ -115,7 +117,7 @@ x = snake_game(n)
 x.create()
 key=None
 last_tick_time = time.monotonic()
-tick=1
+tick=0.250
 while(True):
     
     if(msvcrt.kbhit()):
