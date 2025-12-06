@@ -27,7 +27,7 @@ class snake_game:
                 self.grid[x][y]="O"
         food = self.Spawn_food()
         self.grid[food[0]][food[1]]="F"
-        print("\033[?25l", end="")
+        # print("\033[?25l", end="")
 
     def movement(self,z):
         # valid input check 
@@ -74,8 +74,8 @@ class snake_game:
         if(food1==None):
             food1 = self.Spawn_food()
         self.grid[food1[0]][food1[1]]="F"
-        print("\033[H", end="")
-        # self.clear_screen()
+        # print("\033[H", end="")
+        self.clear_screen()
         self.Print()
 
     def Spawn_food(self):
@@ -107,8 +107,8 @@ class snake_game:
                 print(j,end=" ")
             print()
     
-    # def clear_screen(self):
-    #     os.system("cls")
+    def clear_screen(self):
+        os.system("cls")
 
 
 direction = "right"
